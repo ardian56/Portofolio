@@ -69,18 +69,6 @@ const fadeInUp = {
   transition: { duration: 0.8, ease: "easeOut" }
 };
 
-const fadeInLeft = {
-  initial: { opacity: 0, x: -60 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.8, ease: "easeOut" }
-};
-
-const fadeInRight = {
-  initial: { opacity: 0, x: 60 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.8, ease: "easeOut" }
-};
-
 const staggerContainer = {
   animate: {
     transition: {
@@ -196,7 +184,7 @@ const SkillsSection: React.FC = () => (
       whileInView="animate"
       viewport={{ once: true }}
     >
-      {skills.map((skill, index) => (
+      {skills.map((skill) => (
         <motion.div 
           key={skill.name} 
           className="w-32 h-32 flex flex-col items-center justify-center p-5 bg-gray-100 dark:bg-gray-700 rounded-xl shadow-md cursor-pointer"
