@@ -77,7 +77,7 @@ const HeroSection: React.FC = () => (
 // Komponen Skills Section
 const SkillsSection: React.FC = () => (
   <section id="skills" className="py-20 px-8 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
-    <h2 className="text-4xl font-bold text-center mb-12">Teknologi & Bahasa</h2>
+    <h2 className="text-4xl font-bold text-center mb-12">Tools & Language</h2>
     <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
       {skills.map((skill) => (
         <div key={skill.name} className="flex flex-col items-center p-5 bg-gray-100 dark:bg-gray-700 rounded-xl shadow-md transform hover:scale-105 transition duration-300 ease-in-out">
