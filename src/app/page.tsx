@@ -23,13 +23,13 @@ const skills = [
 const projects = [
   {
     id: 1,
-    name: 'SD Palebon 03 Semarang',
-    description: 'Internship Diskominfo Project - Rebranding Website SD Palebon 03 Semarang. Proyek ini bertujuan untuk meningkatkan visibilitas dan aksesibilitas informasi sekolah melalui desain ulang yang modern dan responsif.',
-    technologies: ['Next.js', 'React', 'Supabase', 'Tailwind CSS'],
-    imageUrl: '/diskominfo.png',
-    githubUrl: 'https://github.com/ardian56/SD-Palebon-03.git',
-    liveUrl: 'https://sd-palebon-03.vercel.app/',
-    date: '10-03-2025',
+    name: 'Panorama ID',
+    description: 'Website Jual Beli Tiket Wisata Indonesia. Proyek ini menyediakan platform untuk memesan tiket wisata di berbagai destinasi di Indonesia, dengan fokus pada pengalaman pengguna yang mudah dan intuitif.',
+    technologies: ['Javascript','Bootstrap', 'MySql', 'PHP'],
+    imageUrl: '/manpro.png',
+    githubUrl: 'https://github.com/ardian56/manpro.git',
+    liveUrl: '',
+    date: '15-10-2023',
   },
   {
     id: 2,
@@ -43,13 +43,23 @@ const projects = [
   },
   {
     id: 3,
-    name: 'Panorama ID',
-    description: 'Website Jual Beli Tiket Wisata Indonesia. Proyek ini menyediakan platform untuk memesan tiket wisata di berbagai destinasi di Indonesia, dengan fokus pada pengalaman pengguna yang mudah dan intuitif.',
-    technologies: ['Javascript','Bootstrap', 'MySql', 'PHP'],
-    imageUrl: '/manpro.png',
-    githubUrl: 'https://github.com/ardian56/manpro.git',
+    name: 'SD Palebon 03 Semarang',
+    description: 'Internship Diskominfo Project - Rebranding Website SD Palebon 03 Semarang. Proyek ini bertujuan untuk meningkatkan visibilitas dan aksesibilitas informasi sekolah melalui desain ulang yang modern dan responsif.',
+    technologies: ['Next.js', 'React', 'Supabase', 'Tailwind CSS'],
+    imageUrl: '/diskominfo.png',
+    githubUrl: 'https://github.com/ardian56/SD-Palebon-03.git',
+    liveUrl: 'https://sd-palebon-03.vercel.app/',
+    date: '10-03-2025',
+  },
+  {
+    id: 4,
+    name: 'WD04 Poliklinik',
+    description: 'Project Bimbingan Karir - Website Poliklinik. Proyek ini menyediakan platform untuk mengelola informasi dan layanan kesehatan di Poliklinik, dengan fokus pada kemudahan akses bagi pasien dan staf medis.',
+    technologies: ['Laravel', 'Bootstrap', 'PHP', 'MariaDB', 'Breeze UI'],
+    imageUrl: '/bk.png',
+    githubUrl: 'https://github.com/ardian56/Workshop-BK.git',
     liveUrl: '',
-    date: '15-10-2023',
+    date: '04-06-2025',
   },
 ];
 
@@ -155,8 +165,10 @@ const ProjectsSection: React.FC = () => (
   <section id="projects" className="py-20 px-8 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
     <h2 className="text-4xl font-bold text-center mb-12">Project Saya</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-      {projects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
+      {[...projects]
+        .sort((a, b) => b.id - a.id)
+        .map((project) => (
+          <ProjectCard key={project.id} project={project} />
       ))}
     </div>
   </section>
