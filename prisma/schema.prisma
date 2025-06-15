@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Certificate {
+  id         Int      @id @default(autoincrement())
+  title      String
+  imageUrl   String? // nullable
+  issueDate  DateTime?
+}
+
+model Project {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String?
+  technologies Json?
+  imageUrl     String?
+  githubUrl    String?
+  liveUrl      String?
+  date         DateTime?
+}
+
+model Video {
+  id           Int      @id @default(autoincrement())
+  title        String
+  youtubeUrl   String
+  description  String?
+  createdAt    DateTime @default(now())
+}
