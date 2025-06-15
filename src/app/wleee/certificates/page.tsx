@@ -2,11 +2,19 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
+interface Certificate {
+  id: number;
+  title: string;
+  issueDate: string;
+  imageUrl?: string;
+}
 
 export default function CertificatesPage() {
   const router = useRouter();
 
-  const [certificates, setCertificates] = useState([]);
+  const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [title, setTitle] = useState('');
   const [issueDate, setIssueDate] = useState('');
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -90,15 +98,14 @@ export default function CertificatesPage() {
           type="file"
           accept="image/*"
           onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-          className="w-full"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Simpan Sertifikat
+          Simpan
         </button>
       </form>
 
       <div className="space-y-4">
-        {certificates.map((c: any) => (
+        {certificates.map((c) => (
           <div key={c.id} className="border p-4 rounded">
             <h2 className="text-lg font-semibold">{c.title}</h2>
             <p className="text-sm">{new Date(c.issueDate).toLocaleDateString()}</p>

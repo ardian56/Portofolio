@@ -1,9 +1,21 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+
+interface Project {
+  id: number;
+  name: string;
+  description: string;
+  technologies: string[];
+  imageUrl?: string;
+  githubUrl: string;
+  liveUrl: string;
+  date: string;
+}
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [technologies, setTechnologies] = useState('');
@@ -76,12 +88,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="p-4 max-w-3xl mx-auto">
-        <button
-          onClick={() => window.location.href = '/wleee'}
-          className="mb-6 bg-gray-300 px-3 py-1 rounded hover:bg-gray-400"
-        >
-          ← Home
-        </button>
+      <button
+        onClick={() => window.location.href = '/wleee'}
+        className="mb-6 bg-gray-300 px-3 py-1 rounded hover:bg-gray-400"
+      >
+        ← Home
+      </button>
 
       <h1 className="text-2xl font-bold mb-4">Manajemen Projects</h1>
       <form onSubmit={handleSubmit} className="space-y-4 mb-8">
@@ -138,12 +150,21 @@ export default function ProjectsPage() {
       </form>
 
       <div className="space-y-4">
-        {projects.map((p: any) => (
+        {projects.map((p: Project) => (
           <div key={p.id} className="border p-4 rounded">
             <h2 className="text-lg font-semibold">{p.name}</h2>
             <p>{p.description}</p>
             <p>Teknologi: {p.technologies?.join(', ')}</p>
-            {p.imageUrl && <img src={p.imageUrl} alt={p.name} className="w-48 mt-2 rounded" />}
+            {p.imageUrl && (
+              <div className="relative w-48 h-32 mt-2">
+                <Image
+                  src={p.imageUrl}
+                  alt={p.name}
+                  fill
+                  className="rounded object-cover"
+                />
+              </div>
+            )}
             <p>
               <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600">
                 Github

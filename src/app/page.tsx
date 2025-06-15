@@ -554,7 +554,7 @@ const YouTubeSection: React.FC<{ videos: Video[] }> = ({ videos }) => {
       whileInView="animate"
       viewport={{ once: true }}
     >
-      {videos.map((video, index) => (
+      {videos.map((video) => (
         <motion.div
           key={video.id}
           className="aspect-video"
