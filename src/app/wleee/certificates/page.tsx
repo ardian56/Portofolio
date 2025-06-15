@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image'; // Image is now imported and will be used
+import Image from 'next/image';
 
 interface Certificate {
   id: number;
@@ -110,15 +110,7 @@ export default function CertificatesPage() {
             <h2 className="text-lg font-semibold">{c.title}</h2>
             <p className="text-sm">{new Date(c.issueDate).toLocaleDateString()}</p>
             {c.imageUrl && (
-              <div className="relative w-48 h-32 mt-2"> {/* Added a wrapper div with relative position and defined size */}
-                <Image
-                  src={c.imageUrl}
-                  alt={c.title}
-                  layout="fill" // Ensures the image fills the parent div
-                  objectFit="cover" // Crops the image to cover the area
-                  className="rounded" // Apply border-radius to the Image component itself
-                />
-              </div>
+              <img src={c.imageUrl} alt={c.title} className="w-48 mt-2 rounded" />
             )}
             <button
               onClick={() => handleDelete(c.id)}
