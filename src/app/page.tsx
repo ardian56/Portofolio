@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image'; // Import the Image component
 
 // --- DATA PERSONAL INFO (tetap statis) ---
 const personalInfo = {
@@ -112,14 +113,16 @@ const HeroSection: React.FC<{ personalInfo: typeof personalInfo }> = ({ personal
 
   return (
     <section id="home" className="relative flex flex-col items-center justify-center min-h-screen text-center p-8 text-white">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${personalInfo.profilePic})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      {/* Use Next.js Image component for background image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={personalInfo.profilePic}
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          quality={80} // Adjust quality as needed
+          priority // Load this image with high priority
+        />
         <div className="absolute inset-0 bg-black opacity-60"></div>
       </div>
       <motion.div
@@ -197,7 +200,7 @@ const HeroSection: React.FC<{ personalInfo: typeof personalInfo }> = ({ personal
           )}
         </motion.button>
       )}
-      
+
       {/* Scroll to Top Button */}
       {typeof window !== 'undefined' && (
         <motion.button
@@ -331,13 +334,18 @@ const SkillsSection: React.FC<{ skills: typeof staticSkills }> = ({ skills }) =>
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
           {skill.icon && (
-            <motion.img
-              src={skill.icon}
-              alt={skill.name}
-              className="w-12 h-12 mb-3"
+            <motion.div
+              className="w-12 h-12 mb-3 relative" // Add relative positioning for Image component
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
-            />
+            >
+              <Image
+                src={skill.icon}
+                alt={skill.name}
+                layout="fill" // Fill the parent div
+                objectFit="contain" // Contain the image within the element
+              />
+            </motion.div>
           )}
           <span className="text-lg font-medium text-center">{skill.name}</span>
         </motion.div>
@@ -365,15 +373,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
     }}
   >
     <motion.div
-      className="overflow-hidden"
+      className="overflow-hidden relative w-full h-52" // Add relative positioning and fixed dimensions for Image
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.3 }}
     >
       {project.imageUrl && (
-        <img
+        <Image
           src={project.imageUrl}
           alt={project.name}
-          className="w-full h-52 object-cover transition-transform duration-300 group-hover:scale-110"
+          layout="fill" // Fill the parent div
+          objectFit="cover" // Cover the area
+          className="transition-transform duration-300 group-hover:scale-110" // Apply transition for hover effect
         />
       )}
     </motion.div>
@@ -501,11 +511,14 @@ const CertificateCard: React.FC<CertificateCardProps> = ({ certificate, index })
     }}
   >
     {certificate.imageUrl && (
-      <img
-        src={certificate.imageUrl}
-        alt={certificate.title}
-        className="w-full h-48 object-cover"
-      />
+      <div className="relative w-full h-48"> {/* Add relative positioning and fixed dimensions for Image */}
+        <Image
+          src={certificate.imageUrl}
+          alt={certificate.title}
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
     )}
     <div className="p-5 flex flex-col flex-grow">
       <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{certificate.title}</h3>
@@ -606,12 +619,17 @@ const ContactSection: React.FC = () => (
         }}
         whileTap={{ scale: 0.95 }}
       >
-        <motion.img
-          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-          alt="GitHub"
-          className="w-8 h-8"
+        <motion.div
+          className="w-8 h-8 relative" // Added relative positioning for Image
           whileHover={{ rotate: 15 }}
-        />
+        >
+          <Image
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+            alt="GitHub"
+            layout="fill"
+            objectFit="contain"
+          />
+        </motion.div>
         <span className="text-lg font-medium">GitHub</span>
       </motion.a>
 
