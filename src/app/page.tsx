@@ -5,7 +5,7 @@ const UnderConstruction = () => (
         🚧 Under Construction 🚧
       </h1>
       <p className="text-xl md:text-2xl text-gray-400 mb-8">
-        We're working hard to bring you something amazing!
+        We&apos;re working hard to bring you something amazing!
       </p>
       <div className="flex justify-center space-x-4">
         <a
